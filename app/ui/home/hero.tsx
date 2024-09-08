@@ -5,13 +5,13 @@ import { ROUTES } from "@/app/lib/constants/routes"
 
 export default function Hero() {
     return (
-        <div className="h-[90vh] md:h-screen">
+        <div className="h-[90vh] md:h-screen pt-12">
             <div className="overflow-hidden h-full bg-black">
                 <div className={clsx(
                         // Layout & Sizing
                         'w-full h-[90vh] md:h-screen opacity-70 relative',
                         // Background
-                        "bg-[url('/hero-mobile.png')] md:bg-[url('/hero.jpg')] bg-cover bg-center",
+                        "bg-[url('/hero-mobile.jpg')] md:bg-[url('/hero.jpg')] bg-cover md:bg-top",
                     )}
                 ></div>
                 <div className="z-20 absolute top-1/2 left-1/2 -translate-x-1/2">

@@ -11,11 +11,11 @@ import { ROUTES } from '@/app/lib/constants/routes'
 
 export default function Product({
     product,
-    styles,
+    className,
     navSearch,
 }: {
     product: any
-    styles?: string
+    className?: string
     navSearch?: boolean
 }) {
     const image = {
@@ -49,11 +49,12 @@ export default function Product({
                 key={product.id}
                 onClick={handleClick}
             >
-                <div className={`grid grid-rows-12 h-full gap-4 ${styles}`}>
+                <div className={`md:grid grid-rows-12 h-full gap-4 mb-10 md:mb-0 ${className}`}>
                     <div
                         className={clsx(
-                            'overflow-hidden row-span-7 sm:row-span-10', 
-                            'flex items-center'
+                          '',
+                          'overflow-hidden row-span-7 sm:row-span-10', 
+                          'flex items-center'
                         )}
                     >
                         <motion.div
@@ -63,9 +64,10 @@ export default function Product({
                             <Image
                                 className={clsx(
                                     // Layout & Sizing
-                                    'object-cover h-full max-h-60 sm:max-h-full',
+                                    'object-cover h-full sm:max-h-full',
                                     // Transitions & Animations
                                     'transition-all duration-300 ease-in-out',
+                                    'pb-6 md:pb-0'
                                 )}
                                 src={product.image} 
                                 alt={product.name}

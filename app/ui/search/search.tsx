@@ -1,24 +1,24 @@
-'use client';
+'use client'
 
+import clsx from 'clsx'
 import { XMarkIcon } from '@heroicons/react/20/solid'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
-import clsx from 'clsx'
 import { useSearchParams, usePathname, useRouter } from 'next/navigation'
 import { useDebouncedCallback } from 'use-debounce'
-
 import { useDispatch } from 'react-redux'
 import { toggleSearchBar } from '@/redux/features/nav/searchBarSlice'
-import { Suspense } from 'react';
-import { NavSearchResultsSkeleton } from '@/app/ui/common/skeletons';
+import { Suspense } from 'react'
+import { NavSearchResultsSkeleton } from '@/app/ui/common/skeletons'
 
 export default function Search({
   placeholder,
 }: { 
   placeholder?: string
 }) {
+  const dispatch = useDispatch()
   const searchParams = useSearchParams()
-  const pathname = usePathname();
-  const { replace } = useRouter();
+  const pathname = usePathname()
+  const { replace } = useRouter()
 
   let handleSearch = useDebouncedCallback((term) => {
     const params = new URLSearchParams(searchParams)
@@ -29,14 +29,13 @@ export default function Search({
     }
     replace(`${pathname}?${params.toString()}`)
   }, 300)
-  const dispatch = useDispatch()
 
   return (
     <Suspense fallback={<NavSearchResultsSkeleton />}>
       <div className={clsx(
-        'relative grid grid-cols-12 w-full',
+        'relative grid grid-cols-12 w-full border rounded ',
         // Spacing
-        'py-2', 
+        'py-4 px-12', 
       )}
       >
         <MagnifyingGlassIcon 
@@ -67,12 +66,14 @@ export default function Search({
           }}
           placeholder={placeholder}
           defaultValue={searchParams.get('query')?.toString()}
+        />
+        <div className="col-span-1 flex justify-end">
+          <XMarkIcon
+            className='h-6 cursor-pointer'
+            onClick={() => dispatch(toggleSearchBar())}
           />
-        <XMarkIcon
-          className='h-6 col-span-1 cursor-pointer'
-          onClick={() => dispatch(toggleSearchBar())}
-          />
+        </div>
       </div>
     </Suspense>
-  );
+  )
 }

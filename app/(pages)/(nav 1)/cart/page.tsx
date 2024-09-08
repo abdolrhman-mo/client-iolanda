@@ -27,7 +27,7 @@ export default function Page({
     return (
         <>
             {/* <NavSearchResults query={query} currentPage={currentPage} /> */}
-            <div className="w-5/6 mx-auto space-y-12">
+            <div className="w-5/6 mx-auto space-y-12 pt-12">
                 <div className="text-center">
                     <br />
                     <Heading level={2}>cart</Heading>

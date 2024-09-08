@@ -25,7 +25,7 @@ export default function RootLayout({
         (navCart || searchBar || mobileNav) ? 'overflow-hidden' : '',
       ) + `bg-${MAIN_COLOR}`}>
         <Nav />
-        <div className="pt-20">
+        <div className="pt-18">
           {children}
         </div>
         <Footer />

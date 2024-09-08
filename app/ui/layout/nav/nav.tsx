@@ -58,11 +58,11 @@ export default function Nav() {
     const searchBar = useSelector(selectSearchBar)
 
     return (
-        <nav className='shadow-sm fixed w-full z-30 bg-[#EBD9D5]'>
+        <nav className='shadow-sm fixed w-full z-30 bg-white'>
             <div 
                 className={clsx(
                     // Layout & Sizing
-                    'relative flex justify-around',
+                    'relative flex justify-around items-center',
                     // Spacing
                     'py-5 w-11/12 mx-auto',
                     // Typography
@@ -88,7 +88,7 @@ export default function Nav() {
                 }} />
 
                 <div
-                    className='mx-auto flex justify-center'
+                    className='mx-auto flex justify-center items-center'
                 >    
                     {/* <ul 
                         className={clsx(

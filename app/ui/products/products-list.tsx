@@ -6,7 +6,7 @@ import { ROUTES } from '@/app/lib/constants/routes'
 
 export default function ProductsList({
     products = [],
-    styles = '',
+    className = '',
     productStyles = '',
     tag = 'all',
     limit = 0,
@@ -14,16 +14,20 @@ export default function ProductsList({
     navSearch = false,
     query,
     exceptProduct,
-}: {
-  products?: any[]
-  styles?: string
-  productStyles?: string
-  tag?: string
-  limit?: number
-  search?: boolean
-  navSearch?: boolean
-  query?: string
-  exceptProduct?: number
+    startIndex = 0,
+    endIndex = 100,
+  }: {
+    products?: any[]
+    className?: string
+    productStyles?: string
+    tag?: string
+    limit?: number
+    search?: boolean
+    navSearch?: boolean
+    query?: string
+    exceptProduct?: number
+    startIndex?: number
+    endIndex?: number
 }) {
     // Search
     let searchedProducts: any = []
@@ -73,16 +77,20 @@ export default function ProductsList({
                     'grid grid-cols-1 md:grid-cols-2 md:gap-x-12 gap-y-4',
                     // Effects
                     'opacity-100',
-                ) + ` ${styles}`}
+                ) + ` ${className}`}
             >
-                {filteredProducts.map((product: any) =>
-                    <Product
+                {filteredProducts.map((product: any, i:number) => {
+                  if (i >= startIndex && i <= endIndex) {
+                    return (
+                      <Product
                         key={product.id}
                         product={product}
-                        styles={productStyles}
+                        className={productStyles}
                         navSearch={navSearch}
-                    />
-                )}
+                      />
+                    )
+                  }
+                })}
             </div>
             
             {/* If it's a searching product list */}

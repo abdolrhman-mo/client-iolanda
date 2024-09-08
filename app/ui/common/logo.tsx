@@ -11,15 +11,15 @@ export default function Logo({
     return (
         <Link 
             href={ROUTES.HOME}
-            className={`text-4xl font-black ${className}`}
+            className={`text-l md:text-2xl font-bold ${className}`}
         >
-          {/* {APP_NAME} */}
-          <Image
+          {APP_NAME}
+          {/* <Image
             src={'/logo.png'}
             alt={APP_NAME}
             width={100}
             height={100}
-          />
+          /> */}
         </Link>
     )
 }

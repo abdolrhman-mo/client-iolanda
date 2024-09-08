@@ -1,6 +1,6 @@
 TODO:
-- hero image
-- colors(background, font colors)
 - logo(nav, footer)
 - links(nav, footer)
+- colors(background, font colors)
+- hero image
 - product gallery layout nd categories
