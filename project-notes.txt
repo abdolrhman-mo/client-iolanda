@@ -4,3 +4,6 @@ TODO:
 - colors(background, font colors)
 - hero image
 - product gallery layout nd categories
+
+
+- favicon
