@@ -1,6 +1,5 @@
 import { redirectHome } from "@/app/lib/actions"
 import { loginAPI, signupAPI } from "@/app/lib/services/auth/authService"
-import { syncCartWithServerAPI } from "@/app/lib/services/cartService"
 import { createAsyncThunk } from "@reduxjs/toolkit"
 
 export const auth = createAsyncThunk('auth/auth', async (
@@ -27,7 +26,7 @@ export const auth = createAsyncThunk('auth/auth', async (
       }
       const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]')
       if (cartItems.length > 0) {
-          await syncCartWithServerAPI(cartItems)
+        
       }
       localStorage.removeItem('cartItems')
       

@@ -25,7 +25,7 @@ export default async function Page({
         <Hero />
 
         <div id="new-collection">
-          <ProductGallery title='Summer Collection' tag='new' />
+          <ProductGallery title='Summer Collection' tag='summer' />
         </div>
         
       </div>

@@ -1,13 +1,12 @@
-import { Inter } from 'next/font/google'
-import { Lusitana } from 'next/font/google'
-import { Poppins } from 'next/font/google'
+// Using system fonts instead of custom fonts
+export const inter = {
+    className: 'font-sans'
+}
 
-export const inter = Inter({ subsets: ['latin'] })
-export const lusitana = Lusitana({ 
-    subsets: ['latin'], 
-    weight: ['400', '700']
-})
-export const poppins = Poppins({
-    subsets: ['latin'],
-    weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
-})
+export const lusitana = {
+    className: 'font-serif'
+}
+
+export const poppins = {
+    className: 'font-sans'
+}

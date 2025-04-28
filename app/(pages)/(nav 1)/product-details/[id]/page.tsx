@@ -8,7 +8,6 @@ import AddToCartLink from "@/app/ui/product-details/add-to-cart-link"
 import CustomLink from "@/app/ui/common/custom-link"
 import Button from "@/app/ui/common/button"
 import Heading from "@/app/ui/common/heading"
-import { fetchProductsAPI } from "@/app/lib/services/products/productService"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "@/redux/store"
@@ -18,6 +17,7 @@ import ProductDetailsSkeleton from "@/app/ui/skeletons/product-details-skeleton"
 import { abdoRedirect } from "@/app/lib/actions"
 import { ProductType } from "@/app/lib/types/productTypes"
 import { ROUTES } from "@/app/lib/constants/routes"
+import productsData from "@/app/lib/data/products.json"
 
 export default function Page({
     params,
@@ -29,7 +29,6 @@ export default function Page({
         page?: string
     }
 }) {
-    const API_URL = process.env.NEXT_PUBLIC_API_URL
 
     const dispatch = useDispatch()
     const products = useSelector((state: RootState) => state.products.items)
@@ -46,7 +45,7 @@ export default function Page({
     useEffect(() => {
         const getData = async () => {
             try {
-                const data: ProductType[] = await fetchProductsAPI()
+                const data: ProductType[] = productsData
                 dispatch(initializeProducts(data))
 
                 const fetchedProduct = data.find(p => p.id === Number(params.id)) || null
@@ -74,11 +73,11 @@ export default function Page({
                     <ProductDetailsSkeleton />
                 ) : (
                 <>
-                    <div className="w-5/6 mx-auto pt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div className="w-5/6 mx-auto pt-32 grid grid-cols-1 lg:grid-cols-2 gap-8">
                         <div className="flex justify-center w-full">
                             <Image
                                 className="max-w-96"
-                                src={product.image.startsWith('http') ? product.image : `${API_URL + product.image}`}
+                                src={product.image}
                                 alt={product.name}
                                 width={500}
                                 height={500}
@@ -140,9 +139,9 @@ export default function Page({
                         <div className="text-center">
                             <Heading level={2}>you may also like</Heading>
                         </div>
-                        <ProductsList products={products} limit={2} tag='new' exceptProduct={product.id} />
+                        <ProductsList products={products} limit={2} tag='summer' exceptProduct={product.id} />
                         <div className="w-fit mx-auto">
-                            <CustomLink className="text-xs" href={ROUTES.COLLECTIONS.ALL}>continue shopping</CustomLink>
+                            <CustomLink className="text-xs" href={ROUTES.HOME}>continue shopping</CustomLink>
                         </div>
                     </div>
                 </>

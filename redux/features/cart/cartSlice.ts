@@ -46,6 +46,12 @@ const cartSlice = createSlice({
       })
       .addCase(addItemToCart.fulfilled, (state, action) => {
         const { cartItem, changeQuantity } = action.payload
+        
+        if (!cartItem) {
+          state.status = 'idle'
+          return
+        }
+
         const existingItem = state.items.find(item => 
           item.id === cartItem.id && item.size === cartItem.size
         )

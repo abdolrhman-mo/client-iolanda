@@ -17,18 +17,22 @@ import { motion } from 'framer-motion'
 import { useSelector, useDispatch } from 'react-redux'
 import { selectSearchBar } from '@/redux/features/nav/searchBarSlice'
 import { toggleMobileNav } from '@/redux/features/nav/mobileNavSlice'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { abdoRedirect } from '@/app/lib/actions'
 import { toggleNavCart } from '@/redux/features/nav/navCartSlice'
 import { ROUTES } from '@/app/lib/constants/routes'
 
 export default function Nav() {
     const dispatch: any = useDispatch()
-
     const [loggedIn, setLoggedIn] = useState(false)
+    const [isClient, setIsClient] = useState(false)
+
+    useEffect(() => {
+        setIsClient(true)
+    }, [])
 
     let handleUserIconClick = () => {
-        if (localStorage.getItem('authToken')) {
+        if (isClient && localStorage.getItem('authToken')) {
             if (localStorage.getItem('email') === 'admin@admin.admin') {
                 abdoRedirect(ROUTES.DASHBOARD.MAIN)
             } else {
@@ -40,7 +44,7 @@ export default function Nav() {
     }
 
     let handleBarsIconClick = () => {
-        if (localStorage.getItem('authToken')) {
+        if (isClient && localStorage.getItem('authToken')) {
             setLoggedIn(true)
         } else {
             setLoggedIn(false)
